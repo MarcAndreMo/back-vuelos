@@ -1,0 +1,17 @@
+node_modules
+archivos/
+services/architecture/documentacion
+.env
+.envprod
+.envdesa
+archivos/controlador.php
+archivos/model.php
+archivos/java.php 
+archivos/*.php
+/archivos/
+/archivos
+/files-uploads
+email.js
+services/practica
+services/prueba_victor
+services/proteccion/assets
