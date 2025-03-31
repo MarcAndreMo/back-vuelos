@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "0f2e68d2-f0ba-4c28-aab9-b2d1e5436a60",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30258430"
+	},
+	"item": [
+		{
+			"name": "Validacion de usuario desde GATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjRjZTUzNTEwLTBkY2EtMTFmMC1iYWQwLThiYjFlZjBiNjNkMiIsImV4cGlyZXNfaW4iOjE3NDMzODU4OTcsImlhdCI6MTc0MzM4MjI5NywiZXhwIjoxNzQzMzg1ODk3fQ.aMbOgW1oE4NGt6iFLHbXgCDj5GyVNXNErL1OabyFv6o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"juanp\",\r\n    \"password\": \"admin\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Valida si existe el usuario en la tabla usuarios\n\nPidiendo el ingreso del username y el password\n\nEl password se almacena de forma increptada\n\nAl hacer el post se genera el TOKEN respectivo para cada sesion"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vuelos por criterio de busqueda",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjhlZTk3OWIwLTBkZGItMTFmMC1hODQxLWM1MTliOTZlOTIxMyIsImV4cGlyZXNfaW4iOjE3NDMzOTMzMDksImlhdCI6MTc0MzM4OTcwOSwiZXhwIjoxNzQzMzkzMzA5fQ.qUe9P0c-RziA8B0YTgoutxRMAKfS6lx6hzwqu6eLXz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/vuelos/vuelos/Colombia/Chile/2025-04-12 09:45:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"vuelos",
+						"vuelos",
+						"Colombia",
+						"Chile",
+						"2025-04-12 09:45:00"
+					]
+				},
+				"description": "Se realiza la consulta respectiva para obtner los vuelos segun el pais_origen, pais_destino y fecha_salida por parametros\n\nAdemas de tener su auth"
+			},
+			"response": []
+		},
+		{
+			"name": "reservar vuelo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjFiZDRhMjcwLTBkZTQtMTFmMC04MGE3LTFiNzEzYjkyMzEwNCIsImV4cGlyZXNfaW4iOjE3NDMzOTY5ODEsImlhdCI6MTc0MzM5MzM4MSwiZXhwIjoxNzQzMzk2OTgxfQ.kG_YJIEcNuUW9S8IbJX5yx3KQ0U9FlaTvVei_lWGQTw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_vuelo\": 8,\r\n    \"id_usuario\": 5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/reservas/createReserva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"reservas",
+						"createReserva"
+					]
+				},
+				"description": "Crea la reserva de un vuelo por medio del id_vuelo y el id_usuario\n\nValida que el usuario / vuelo exista\n\nValida que la reserva sea en un horario disponible por la fecha de salida que contiene yyyy-dd-mm hh:mm:ss"
+			},
+			"response": []
+		},
+		{
+			"name": "cancelar reserva",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjFiZDRhMjcwLTBkZTQtMTFmMC04MGE3LTFiNzEzYjkyMzEwNCIsImV4cGlyZXNfaW4iOjE3NDMzOTY5ODEsImlhdCI6MTc0MzM5MzM4MSwiZXhwIjoxNzQzMzk2OTgxfQ.kG_YJIEcNuUW9S8IbJX5yx3KQ0U9FlaTvVei_lWGQTw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/reservas/deleteReserva/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"reservas",
+						"deleteReserva",
+						"20"
+					]
+				},
+				"description": "Se cancela una reserva por medio del id de la reserva\n\nSI no existe la reserva, devuelve no encontrada"
+			},
+			"response": []
+		},
+		{
+			"name": "reservas por usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjhlZTk3OWIwLTBkZGItMTFmMC1hODQxLWM1MTliOTZlOTIxMyIsImV4cGlyZXNfaW4iOjE3NDMzOTMzMDksImlhdCI6MTc0MzM4OTcwOSwiZXhwIjoxNzQzMzkzMzA5fQ.qUe9P0c-RziA8B0YTgoutxRMAKfS6lx6hzwqu6eLXz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/usuarios/reservaUsuario/11/reserva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"usuarios",
+						"reservaUsuario",
+						"11",
+						"reserva"
+					]
+				},
+				"description": "Devuelve todas las reservas de un usuario en especifico para este ejemplo el numero 11"
+			},
+			"response": []
+		},
+		{
+			"name": "Todos los vuelos disponibles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJqdWFucCIsImp0aSI6IjRjZTUzNTEwLTBkY2EtMTFmMC1iYWQwLThiYjFlZjBiNjNkMiIsImV4cGlyZXNfaW4iOjE3NDMzODU4OTcsImlhdCI6MTc0MzM4MjI5NywiZXhwIjoxNzQzMzg1ODk3fQ.aMbOgW1oE4NGt6iFLHbXgCDj5GyVNXNErL1OabyFv6o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"juanp\",\r\n    \"password\": \"admin\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/vuelos/getVuelos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"vuelos",
+						"getVuelos"
+					]
+				},
+				"description": "Una vez generado el token respectivo se procede a usarlo en authorization\n\nSe realiza el get para obtener todos los vuelos disponibles"
+			},
+			"response": []
+		}
+	]
+}
