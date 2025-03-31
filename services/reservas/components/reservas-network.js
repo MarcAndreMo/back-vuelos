@@ -3,7 +3,7 @@ import express from "express";
 
 //Modulos
 import response from "../../../network/response.js";
-import Controller from "./vuelos-index.js";
+import Controller from "./reservas-index.js";
 
 //Constantes
 const router = express.Router();
@@ -22,9 +22,9 @@ const router = express.Router();
 //     .catch(next);
 // });
 
-router.get("/getVuelos", function (req, res, next) {
+router.get("/getReservas", function (req, res, next) {
   
-    Controller.getVuelos(req.body)
+    Controller.getReservas(req.body)
       .then((data) => {
         // Manejar la respuesta exitosa
         response.success(req, res, data, 200, data.message);
@@ -33,16 +33,26 @@ router.get("/getVuelos", function (req, res, next) {
  
 });
 
-router.post("/vuelos/:pais_origen/:pais_destino/:fecha_salida?", function (req, res, next) {
-
-  Controller.getVuelosESPEC(req.params)
-    .then((data) => {
-      // Manejar la respuesta exitosa
-      response.success(req, res, data, 200, data.message);
-    })
-    .catch(next);
-
+router.post("/createReserva", function (req, res, next) {
+        Controller.createReserva(req.body)
+        .then((data) => {
+        // Manejar la respuesta exitosa
+        response.success(req, res, data, 200, data.message);
+        })
+        .catch(next);
 });
+
+router.delete("/deleteReserva/:id", function (req, res, next) {
+   
+    const { id } = req.params; 
+        Controller.deleteReservas(id)
+        .then((data) => {
+        // Manejar la respuesta exitosa
+        response.success(req, res, data, 200, 'Reserva eliminada con éxito');
+        })
+        .catch(next);
+});
+
 
 
 export default router;

@@ -6,7 +6,7 @@ import cors from "cors";
 
 //Modulos
 import config from "./config.js";
-import vuelos from "./components/vuelos-network.js";
+import usuarios from "./components/usuarios-network.js";
 import errors from "../../network/errors.js";
 ///import commitController from "./components/commit-controller.js";
 //Constantes
@@ -19,8 +19,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // Configurar cabeceras y cors
-app.options("*", (req, res) => {
-  res.sendStatus(200);
+app.use((req, res, next) => {
+res.header('Access-Control-Allow-Origin', '*');
+//res.header('Access-Control-Allow-Origin: http://localhost:4200');
+res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method'); 
+res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+next();
 });
 
 //middlewares
@@ -30,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUER
 // ROUER
-app.use("/api/vuelos",vuelos );
+app.use("/api/usuarios",usuarios );
 
 app.use(errors);
 

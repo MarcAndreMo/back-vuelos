@@ -45,6 +45,7 @@ export default function (store) {
       username: user.username,  
       jti: jti,
     };
+    
     //TODO: agregar insert de inicio de sesion (auditoria)
     const token = jwt.sign(
       { ...payload, expires_in: Math.floor(Date.now() / 1000) + 60 * 60 },
@@ -57,46 +58,11 @@ export default function (store) {
       name: user.nombres,
     };
   }
-
-  async function mostrarUsuarios(req, res, next) {
-    let list_usuarios = await store.rawQuery(
-      `SELECT * FROM tbusuarios`
-    );
-    if (list_usuarios == null || list_usuarios.length == 0) {
-      list_usuarios = [];
-    }
-
-    return {
-      list_usuarios: list_usuarios,
-    };
-  }
-
-
-  async function registroUsuario(nombre, id) {
-    
-    //encriptar contraseña
-   /*  let clave = "admin";
-    const salt = await bcryptjs.genSalt();
-    clave = await bcryptjs.hash(clave, salt);
-    console.log( clave);
-    try {
-      await store.query(
-        'insert into usuarios (id,nombre) values ($1, $2) RETURNING*',
-         [id,nombre]);
-
-      return true; // La inserción fue exitosa
-    } catch (error) {
-      console.error('Error al insertar el usuario:', error);
-      throw new err("Invalid params", 401 );
-    } */
-  }
-
  
 
   return {
-    mostrarUsuarios,
     verify,
     login,
-    registroUsuario,
+    
   };
 }

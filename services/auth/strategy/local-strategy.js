@@ -32,6 +32,5 @@ export default function (store) {
   });
   return localStrategy;
 }
-// create done function
 
  
